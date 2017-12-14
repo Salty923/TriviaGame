@@ -3,10 +3,11 @@ $( document ).ready(function() {
     var questions = [
         q1 = {
             question: "Which is a true statement with using a minimized version of jQuery?",
-            guess1: "The minified code is easier to read",
-            guess2: "You can not use a minified file in production",
-            guess3: "The minified file is 50% smaller and more efficent",
-            guess4: "You can only use a minifed file in production",
+            choice: [ "The minified code is easier to read",
+                     "You can not use a minified file in production",
+                     "The minified file is 50% smaller and more efficent",
+                     "You can only use a minifed file in production",
+                     ],
             answer: 3,
         },
         q2 = {
@@ -61,15 +62,19 @@ $( document ).ready(function() {
 
        
     
-console.log(questions.q1);
 
-console.log(questions.q2);
 
-console.log(questions[0]);
 
-for (var i = 0; i < questions.length; i++){
 
-}
+
+    $("#question").html(questions[i].question);
+    for (var i = 0; i < choice.length; i++) {
+        $("#guess1").html(questions[i].choice[i]);
+        
+    }
+
+console.log(questions[0].question);
+console.log(questions[0].choice[0]);
 
 });
 
