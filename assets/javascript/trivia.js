@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-    var time = 15;
+    var time = 10;
 
     var questions = [
         q1 = {
@@ -63,14 +63,32 @@ $( document ).ready(function() {
     ];
 
     
+    function start() {
+        intervalTime = setInterval(countDown,1000);
+    }
 
-    var countdown = setInterval(function(){
+    function countDown(){
+        time--;
         $("#timer").html(time);
-            if (time === 0){
-                clearInterval();
-            }else{
-        time--;}},1000);
+        if (time === 0) {
+            clearInterval(intervalTime);
+            $("#buttons").append("<button>Play Again</button>");
+            $("#play").html("Play Again!");
+        } else {
+            time -1;
+        }
+    }
+    
 
+    
+     $("#play").on("click",function() {
+            $("#play").remove();
+            start();
+            countDown();           
+     });
+         
+ 
+        
     
 
        
@@ -80,8 +98,8 @@ $( document ).ready(function() {
 
 
    
-console.log(questions[0].question);
-console.log(questions[0].choice[0]);
+// console.log(questions[0].question);
+// console.log(questions[0].choice[0]);
 
 });
 
