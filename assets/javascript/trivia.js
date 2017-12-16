@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 
+    var time = 15;
+
     var questions = [
         q1 = {
             question: "Which is a true statement with using a minimized version of jQuery?",
@@ -58,21 +60,26 @@ $( document ).ready(function() {
             guess4: "margin: center 0",
             answer: 1,
         },
-    ]
+    ];
 
-       
     
 
+    var countdown = setInterval(function(){
+        $("#timer").html(time);
+            if (time === 0){
+                clearInterval();
+            }else{
+        time--;}},1000);
+
+    
+
+       
 
 
 
 
-    $("#question").html(questions[i].question);
-    for (var i = 0; i < choice.length; i++) {
-        $("#guess1").html(questions[i].choice[i]);
-        
-    }
 
+   
 console.log(questions[0].question);
 console.log(questions[0].choice[0]);
 
