@@ -75,9 +75,10 @@ $( document ).ready(function() {
         if (time === 0) {
             clearInterval(intervalTime);
             $("#buttons").append("<button>Play Again</button>");
-            $("#play").html("Play Again!");
+            $("#play").html("Next question!");
             $("#gif").remove();
-            losses--;
+            losses++;
+            $("#losses").html(losses);
         } else {
             time -1;
         }
@@ -95,14 +96,19 @@ $( document ).ready(function() {
         $("#guess2").html(questions[0].choice[1]);
         $("#guess3").html(questions[0].choice[2]);
         $("#guess4").html(questions[0].choice[3]);
+          
+    
         
-            
-             
-         
-                      
+                  
      });
          
- 
+     $("#guess3").on("click", function() {
+         alert("you win");
+         clearInterval(intervalTime);
+         time = 10;
+         wins++;
+         $("#wins").html(wins);
+     });
         
     
 

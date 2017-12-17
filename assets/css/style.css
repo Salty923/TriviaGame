@@ -16,3 +16,14 @@ body{
 .gifs{
     margin: 0px auto;
 }
+
+.choice{
+    background: grey;
+    margin: 10px auto;
+    height: 50px;
+    width: 500px;
+}
+
+ul{
+    list-style: none;
+}
