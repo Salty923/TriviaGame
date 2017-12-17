@@ -1,6 +1,8 @@
 $( document ).ready(function() {
 
     var time = 10;
+    var wins = 0;
+    var losses = 0;
 
     var questions = [
         q1 = {
@@ -74,6 +76,8 @@ $( document ).ready(function() {
             clearInterval(intervalTime);
             $("#buttons").append("<button>Play Again</button>");
             $("#play").html("Play Again!");
+            $("#gif").remove();
+            losses--;
         } else {
             time -1;
         }
@@ -82,9 +86,20 @@ $( document ).ready(function() {
 
     
      $("#play").on("click",function() {
-            $("#play").remove();
-            start();
-            countDown();           
+         $("#play").remove();
+         $("#gif").append("<img src='assets/images/question.gif'/>");
+         start();
+         countDown();       
+        $("#question").html(questions[0].question);
+        $("#guess1").html(questions[0].choice[0]);
+        $("#guess2").html(questions[0].choice[1]);
+        $("#guess3").html(questions[0].choice[2]);
+        $("#guess4").html(questions[0].choice[3]);
+        
+            
+             
+         
+                      
      });
          
  
