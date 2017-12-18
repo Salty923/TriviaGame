@@ -3,68 +3,79 @@ $( document ).ready(function() {
     var time = 10;
     var wins = 0;
     var losses = 0;
+    var quizPage = 0;
 
     var questions = [
         q1 = {
             question: "Which is a true statement with using a minimized version of jQuery?",
-            choice: [ "The minified code is easier to read",
-                     "You can not use a minified file in production",
-                     "The minified file is 50% smaller and more efficent",
-                     "You can only use a minifed file in production",
-                     ],
+            choice: {
+                  a:  "The minified code is easier to read",
+                  b:  "You can not use a minified file in production",
+                  c:  "The minified file is 50% smaller and more efficent",
+                  d:  "You can only use a minifed file in production",
+            },
             answer: 3,
         },
         q2 = {
             question: "jQuery can be used in following scenarios:",
-            guess1: "Mainly for Animation effects",
-            guess2: "Calling functions on events",
-            guess3: "Apply CSS static or dynamic",
-            guess4: "All of the above",
+            choice: {
+                 a: "Mainly for Animation effects",
+                 b: "Calling functions on events",
+                 c: "Apply CSS static or dynamic",
+                 d: "All of the above",
+            },
             answer: 4,
         },
         q3 = {
             question: "jWhich sign is used as a shortcut for jQuery?",
-            guess1: "%",
-            guess2: "$",
-            guess3: "#",
-            guess4: "@",
+            choice: {
+                 a: "%",
+                 b: "$",
+                 c: "#",
+                 d: "@",
+            },
             answer: 2,
         },
         q4 = {
             question: "How many columns are there in a row using the Bootstrap grid system?",
-            guess1: "12",
-            guess2: "6",
-            guess3: "1",
-            guess4: "2",
+            choice: {
+                a: "12",
+                b: "6",
+                c: "1",
+                d: "2",
+            },
             answer: 1,
         },
         q5 = {
             question: "How many rows can you use with Bootstrap?",
-            guess1: "12",
-            guess2: "6",
-            guess3: "Unlimited",
-            guess4: "2",
+            choice: {
+                a: "12",
+                b: "6",
+                c: "Unlimited",
+                d: "2",
+            },
             answer: 3,
-        },
-        q6 = {
-            question: "What class will apply float-left with Bootstrap?",
-            guess1: "float-left",
-            guess2: "text-center",
-            guess3: "pull-left",
-            guess4: "left",
-            answer: 3,
-        },
-        q7 = {
-            question: "How do you center an element horizontally using css?",
-            guess1: "margin: 0 auto",
-            guess2: "margin: 0 center",
-            guess3: "margin: auto 0",
-            guess4: "margin: center 0",
-            answer: 1,
         },
     ];
 
-    
+    function playAgain(){
+        var button = $("<button></button>").text("PLAY AGAIN");   
+        button.addClass("again btn btn-large btn-block btn-primary");  
+        $("#buttons").append(button); 
+        quizPage++;
+        // $(".again").remove();
+        $("#gif").append("<img src='assets/images/question.gif'/>");
+        start();
+        countDown();
+        $("#question").html(questions[quizPage].question);
+        $("#a").html(questions[quizPage].choice.a);
+        $("#b").html(questions[quizPage].choice.b);
+        $("#c").html(questions[quizPage].choice.c);
+        $("#d").html(questions[quizPage].choice.d);
+        
+    }
+
+
     function start() {
         intervalTime = setInterval(countDown,1000);
     }
@@ -74,10 +85,10 @@ $( document ).ready(function() {
         $("#timer").html(time);
         if (time === 0) {
             clearInterval(intervalTime);
-            $("#buttons").append("<button>Play Again</button>");
             $("#play").html("Next question!");
             $("#gif").remove();
             losses++;
+            $("#losses").
             $("#losses").html(losses);
         } else {
             time -1;
@@ -91,26 +102,29 @@ $( document ).ready(function() {
          $("#gif").append("<img src='assets/images/question.gif'/>");
          start();
          countDown();       
-        $("#question").html(questions[0].question);
-        $("#guess1").html(questions[0].choice[0]);
-        $("#guess2").html(questions[0].choice[1]);
-        $("#guess3").html(questions[0].choice[2]);
-        $("#guess4").html(questions[0].choice[3]);
-          
+        $("#question").html(questions[quizPage].question);
+        $("#a").html(questions[quizPage].choice.a);
+        $("#b").html(questions[quizPage].choice.b);
+        $("#c").html(questions[quizPage].choice.c);
+        $("#d").html(questions[quizPage].choice.d);
     
-        
-                  
      });
          
-     $("#guess3").on("click", function() {
-         alert("you win");
-         clearInterval(intervalTime);
-         time = 10;
-         wins++;
-         $("#wins").html(wins);
-     });
+     $(".choice").on("click",function () {
+         answerVal = $(this).val();
+         if (answerVal === questions[quizPage].answer){
+             alert("correct");
+             clearInterval(intervalTime);
+             time = 10;
+             wins++;
+             $("#wins").html(wins);
+             $("#gif").remove();
+             playAgain();
+         }
+       
         
-    
+         
+     });
 
        
 
