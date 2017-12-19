@@ -58,27 +58,13 @@ $( document ).ready(function() {
             answer: 3,
         },
     ];
-    
-    function againButton(){
-        var button = $("<button></button>").text("PLAY AGAIN");
-        button.addClass("again btn btn-large btn-block btn-primary");
-        $("#buttons").append(button); 
-    };
 
-    function playAgain(){
-        time = 10;
-        quizPage++;
-        // $(".again").remove();
-        $("#gif").append("<img src='assets/images/question.gif'/>");
-        start();
-        countDown();
-        $("#question").html(questions[quizPage].question);
-        $("#a").html(questions[quizPage].choice.a);
-        $("#b").html(questions[quizPage].choice.b);
-        $("#c").html(questions[quizPage].choice.c);
-        $("#d").html(questions[quizPage].choice.d);
-        
-    };
+    
+    
+   
+    var button = $("<button></button>").html("NEXT QUESTION...");
+    button.addClass("again btn btn-large btn-block btn-primary");
+
 
     $("button").on("click",function(){
         alert("clicked");
@@ -87,6 +73,7 @@ $( document ).ready(function() {
     function gameStop(){
         clearInterval(intervalTime);
         $("li").off();
+        $("#timer").hide();
     }
 
 
@@ -102,7 +89,7 @@ $( document ).ready(function() {
             $("#gif").remove();
             losses++;
             $("#losses").html(losses);
-            againButton();
+            playAgain();
         } else {
             time -1;
         }
@@ -132,20 +119,40 @@ $( document ).ready(function() {
              time = 10;
              wins++;
              $("#wins").html(wins);
-             $("#gif").remove();
+             $("#gif").hide();
              gameStop();
-             againButton();
+             playAgain();
          }else if (answerVal != questions[quizPage].answer){
              alert("wrong");
              clearInterval(intervalTime);
              $("#play").html("Next question!");
-             $("#gif").remove();
+             $("#gif").hide();
              losses++;
              $("#losses").html(losses);
              gameStop();
-             againButton();
+             playAgain();
          }
        
+         function playAgain() {
+             $("li").on();
+             $("#buttons").append(button);
+             $(".again").on("click",function () {
+                 $("#gif").show();
+                 $(".again").hide();
+                 time = 10;
+                 quizPage++;
+                 $("#gif").append("<img src='assets/images/question.gif'/>");
+                 start();
+                 countDown();
+                 $("#question").html(questions[quizPage].question);
+                 $("#a").html(questions[quizPage].choice.a);
+                 $("#b").html(questions[quizPage].choice.b);
+                 $("#c").html(questions[quizPage].choice.c);
+                 $("#d").html(questions[quizPage].choice.d);
+             })
+             
+
+         };
         
          
      });

@@ -27,6 +27,7 @@ body{
     margin-top: 15px;
     padding: 10px;
     border: 2px solid black;
+    border-radius: 5px;
 }
 
 .choice:nth-child(2n){
@@ -50,4 +51,8 @@ body{
 
 ul{
     list-style: none;
+}
+
+.again{
+    height: 75px;
 }
