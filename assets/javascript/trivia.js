@@ -115,15 +115,15 @@ function playAgain() {
 }
 
 
-function endGame() {
-    if (questions.length === quizPage) {
-        alert("game over");
-        $(".again").hide();
-        $("#timer").hide();
+// function endGame() {
+//     if (questions.length === quizPage) {
+//         alert("game over");
+//         $(".again").hide();
+//         $("#timer").hide();
         
-    }
+//     }
     
-}
+// }
 
 
 
@@ -150,17 +150,23 @@ $( document ).ready(function() {
          
      $(".choice").on("click",function () {
          answerVal = $(this).val();
-         if (answerVal === questions[quizPage].answer){
-             alert("correct");
+         if (+answerVal === questions[quizPage].answer){
+             alert(answerVal);
              clearInterval(intervalTime);
              time = 10;
              wins++;
              $("#wins").html(wins);
              $("#gif").hide();
              gameStop();
-             playAgain();
-             endGame();
-         }else if (answerVal != questions[quizPage].answer){
+             if (questions.length === quizPage) {
+                 alert("game over");
+                 $(".again").hide();
+                 $("#timer").hide();
+             }else{
+                 playAgain();
+             }
+         
+         }else if (+answerVal != questions[quizPage].answer){
              alert("wrong");
              clearInterval(intervalTime);
              $("#play").html("Next question!");
@@ -170,6 +176,13 @@ $( document ).ready(function() {
              gameStop();
              playAgain();
              endGame();
+             if (questions.length === quizPage) {
+                 alert("game over");
+                 $(".again").hide();
+                 $("#timer").hide();
+             } else {
+                 playAgain();
+             }
          }
          
      });
