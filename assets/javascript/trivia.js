@@ -26,7 +26,7 @@ var questions = [
         answer: 4,
     },
     q3 = {
-        question: "jWhich sign is used as a shortcut for jQuery?",
+        question: "Which sign is used as a shortcut for jQuery?",
         choice: {
             a: "%",
             b: "$",
@@ -57,7 +57,7 @@ var questions = [
     },
 ];
 
-var button = $("<button></button>").html("NEXT QUESTION...");
+var button = $("<button></button>").html("NEXT QUESTION");
 button.addClass("again btn btn-large btn-block btn-primary");
 
 function gameStop() {
@@ -82,15 +82,12 @@ function countDown() {
     time--;
     $("#timer").html(time);
     if (time === 0) {
-        clearInterval(intervalTime);
         $("#gif").hide();
         losses++;
         $("#losses").html(losses);
         gameStop();
         endGame();
         playAgain();
-    } else {
-        time - 1;
     }
 }
 
@@ -112,18 +109,18 @@ function playAgain() {
         $("#c").html(questions[quizPage].choice.c);
         $("#d").html(questions[quizPage].choice.d);
     });
-}
+};
 
 
-// function endGame() {
-//     if (questions.length === quizPage) {
-//         alert("game over");
-//         $(".again").hide();
-//         $("#timer").hide();
+function endGame() {
+    if (questions.length -1 === quizPage) {
+        alert("game over");
+        $(".again").hide();
+        $("#timer").hide();
         
-//     }
+    }
     
-// }
+}
 
 
 
@@ -151,8 +148,6 @@ $( document ).ready(function() {
      $(".choice").on("click",function () {
          answerVal = $(this).val();
          if (+answerVal === questions[quizPage].answer){
-             alert(answerVal);
-             clearInterval(intervalTime);
              time = 10;
              wins++;
              $("#wins").html(wins);
@@ -167,8 +162,6 @@ $( document ).ready(function() {
              }
          
          }else if (+answerVal != questions[quizPage].answer){
-             alert("wrong");
-             clearInterval(intervalTime);
              $("#play").html("Next question!");
              $("#gif").hide();
              losses++;
