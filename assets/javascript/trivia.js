@@ -13,7 +13,6 @@ var questions = [
             d: "You can only use a minifed file in production",
         },
         answer: 3,
-        gif: "",
     },
     q2 = {
         question: "jQuery can be used in following scenarios:",
@@ -57,8 +56,7 @@ var questions = [
     },
 ];
 
-var button = $("<button></button>").html("NEXT QUESTION");
-button.addClass("again btn btn-large btn-block btn-primary");
+
 
 function gameStop() {
     clearInterval(intervalTime);
@@ -92,7 +90,8 @@ function countDown() {
 }
 
 function playAgain() {
-    $(".again").show();
+    var button = $("<button></button>").html("NEXT QUESTION");
+    button.addClass("again btn btn-large btn-block btn-primary");
     $("#buttons").append(button);
     $(".again").on("click", function () {
         $(".message").hide();
@@ -113,10 +112,8 @@ function playAgain() {
 
 
 function endGame() {
-    if (questions.length -1 === quizPage) {
+    if (questions.length  === quizPage) {
         alert("game over");
-        $(".again").hide();
-        $("#timer").hide();
         
     }
     
@@ -153,6 +150,7 @@ $( document ).ready(function() {
              $("#gif").hide();
              gameStop();
              playAgain();
+             console.log(quizPage);
              
          }else if (+answerVal != questions[quizPage].answer){
              $(".message").html("INCORRECT!!");
@@ -162,8 +160,10 @@ $( document ).ready(function() {
              $("#losses").html(losses);
              gameStop();
              playAgain();
+             console.log(quizPage);
              } 
          })   
 });
+
 
 
