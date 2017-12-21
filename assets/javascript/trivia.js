@@ -93,7 +93,6 @@ function countDown() {
 
 function playAgain() {
     $(".again").show();
-    $("li").on();
     $("#buttons").append(button);
     $(".again").on("click", function () {
         gameShow();
@@ -108,8 +107,8 @@ function playAgain() {
         $("#b").html(questions[quizPage].choice.b);
         $("#c").html(questions[quizPage].choice.c);
         $("#d").html(questions[quizPage].choice.d);
-    });
-};
+    })
+}
 
 
 function endGame() {
@@ -121,8 +120,6 @@ function endGame() {
     }
     
 }
-
-
 
 
 
@@ -148,19 +145,11 @@ $( document ).ready(function() {
      $(".choice").on("click",function () {
          answerVal = $(this).val();
          if (+answerVal === questions[quizPage].answer){
-             time = 10;
+             clearInterval(intervalTime);
              wins++;
              $("#wins").html(wins);
              $("#gif").hide();
-             gameStop();
-             if (questions.length === quizPage) {
-                 alert("game over");
-                 $(".again").hide();
-                 $("#timer").hide();
-             }else{
-                 playAgain();
-             }
-         
+             playAgain();
          }else if (+answerVal != questions[quizPage].answer){
              $("#play").html("Next question!");
              $("#gif").hide();
@@ -168,28 +157,8 @@ $( document ).ready(function() {
              $("#losses").html(losses);
              gameStop();
              playAgain();
-             endGame();
-             if (questions.length === quizPage) {
-                 alert("game over");
-                 $(".again").hide();
-                 $("#timer").hide();
-             } else {
-                 playAgain();
-             }
-         }
-         
-     });
-
-       
-
-
-
-
-
-   
-// console.log(questions[0].question);
-// console.log(questions[0].choice[0]);
-
+             } 
+         })   
 });
 
 
