@@ -84,9 +84,12 @@ function countDown() {
         losses++;
         $("#losses").html(losses);
         gameStop();
-        endGame();
+        if (questions.length-1 === quizPage) {
+            endGame();
+        }else{
         playAgain();
     }
+}
 }
 
 function playAgain() {
@@ -112,7 +115,7 @@ function playAgain() {
 
 
 function endGame() {
-    if (questions.length  === quizPage) {
+    if (questions.length -1  === quizPage) {
         alert("game over");
         
     }
@@ -149,8 +152,11 @@ $( document ).ready(function() {
              $("#wins").html(wins);
              $("#gif").hide();
              gameStop();
-             playAgain();
-             console.log(quizPage);
+             if (questions.length - 1 === quizPage) {
+                 endGame();
+             } else {
+                 playAgain();
+             }
              
          }else if (+answerVal != questions[quizPage].answer){
              $(".message").html("INCORRECT!!");
@@ -159,9 +165,12 @@ $( document ).ready(function() {
              losses++;
              $("#losses").html(losses);
              gameStop();
-             playAgain();
-             console.log(quizPage);
-             } 
+             if (questions.length - 1 === quizPage) {
+                 endGame();
+             } else {
+                 playAgain();
+             }
+            }
          })   
 });
 
