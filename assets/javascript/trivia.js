@@ -57,7 +57,6 @@ var questions = [
 ];
 
 
-
 function gameStop() {
     clearInterval(intervalTime);
     $(".choice").hide();
@@ -116,13 +115,22 @@ function playAgain() {
 
 function endGame() {
     if (questions.length -1  === quizPage) {
-        alert("game over");
-        
+        $(".score").remove();
+        finalScore();      
+    }  
+}
+
+function finalScore() {
+    var percent = wins / questions.length * 100;
+    if (percent >= 80) {
+        $(".final").html("Congrats! You scored a " + percent + "%!");
+    }else if (percent <= 60) {
+        $(".final").html("Time to study! You scored a " + percent + "%.");
+    }else{
+        $(".final").html("Not bad! You scored a " + percent + "%.");
     }
     
 }
-
-
 
 
 
