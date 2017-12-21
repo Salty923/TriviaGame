@@ -154,7 +154,7 @@ $( document ).ready(function() {
      $(".choice").on("click",function () {
          answerVal = $(this).val();
          if (+answerVal === questions[quizPage].answer){
-             $(".message").html("CORRECT!!");
+             $(".message").show().html("CORRECT!!");
              clearInterval(intervalTime);
              wins++;
              $("#wins").html(wins);
@@ -167,7 +167,7 @@ $( document ).ready(function() {
              }
              
          }else if (+answerVal != questions[quizPage].answer){
-             $(".message").html("INCORRECT!!");
+             $(".message").show().html("INCORRECT!!");
              $("#play").html("Next question!");
              $("#gif").hide();
              losses++;
