@@ -124,10 +124,13 @@ function finalScore() {
     var percent = wins / questions.length * 100;
     if (percent >= 80) {
         $(".final").html("Congrats! You scored a " + percent + "%!");
-    }else if (percent <= 60) {
+        $(".final").append("<img src='assets/images/dollarsign.gif'/>")
+    }else if (percent < 60) {
         $(".final").html("Time to study! You scored a " + percent + "%.");
+        $(".final").append("<img src='assets/images/study.gif'/>")
     }else{
         $(".final").html("Not bad! You scored a " + percent + "%.");
+        $(".final").append("<img src='assets/images/soso.gif'/>")
     }
     
 }
