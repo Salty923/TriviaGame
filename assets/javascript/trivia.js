@@ -95,6 +95,7 @@ function playAgain() {
     $(".again").show();
     $("#buttons").append(button);
     $(".again").on("click", function () {
+        $(".message").hide();
         gameShow();
         $(".again").hide();
         time = 10;
@@ -145,12 +146,16 @@ $( document ).ready(function() {
      $(".choice").on("click",function () {
          answerVal = $(this).val();
          if (+answerVal === questions[quizPage].answer){
+             $(".message").html("CORRECT!!");
              clearInterval(intervalTime);
              wins++;
              $("#wins").html(wins);
              $("#gif").hide();
+             gameStop();
              playAgain();
+             
          }else if (+answerVal != questions[quizPage].answer){
+             $(".message").html("INCORRECT!!");
              $("#play").html("Next question!");
              $("#gif").hide();
              losses++;
