@@ -120,8 +120,16 @@ function endGame() {
     }  
 }
 
+function reStart() {
+    var doOver = $("<button></button>").html("TRY AGAIN?");
+    doOver.addClass("again btn btn-large btn-block btn-primary");
+    $("#redo").append(doOver);
+
+}
+
 function finalScore() {
     var percent = wins / questions.length * 100;
+    reStart();
     if (percent >= 80) {
         $(".final").html("Congrats! You scored a " + percent + "%!");
         $(".final").append("<img src='assets/images/dollarsign.gif'/>")
@@ -134,6 +142,8 @@ function finalScore() {
     }
     
 }
+
+
 
 
 
