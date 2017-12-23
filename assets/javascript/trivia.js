@@ -124,11 +124,13 @@ function reStart() {
     doOver.addClass("restart btn btn-large btn-block btn-primary");
     $("#redo").append(doOver);
     $(".restart").on("click",function () {
-        $(".restart").hide();
-        $(".final").remove();
         wins = 0;
         losses = 0;
         quizPage = 0;
+        $("#wins").html(wins);
+        $("#losses").html(losses);
+        $(".restart").hide();
+        $(".final").remove();
         $(".choice").css({ "display": "block" });
         $("#question").html(questions[quizPage].question);
         $("#a").html(questions[quizPage].choice.a);
@@ -145,19 +147,21 @@ function reStart() {
 
 function finalScore() {
     var percent = wins / questions.length * 100;
-    reStart();
     if (percent >= 80) {
         $(".final").html("Congrats! You scored a " + percent + "%!");
         $(".final").append("<img src='assets/images/dollarsign.gif'/>");
         $(".final").show("<img src='assets/images/dollarsign.gif'/>");
+        reStart();
     }else if (percent < 60) {
         $(".final").html("Time to study! You scored a " + percent + "%.");
         $(".final").append("<img src='assets/images/study.gif'/>");
         $(".final").show("<img src='assets/images/study.gif'/>")
+        reStart();
     }else{
         $(".final").html("Not bad! You scored a " + percent + "%.");
         $(".final").append("<img src='assets/images/soso.gif'/>");
         $(".final").show("<img src='assets/images/soso.gif'/>");
+        reStart();
     }
     
 }
