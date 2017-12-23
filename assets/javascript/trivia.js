@@ -130,7 +130,7 @@ function reStart() {
         $("#wins").html(wins);
         $("#losses").html(losses);
         $(".restart").hide();
-        $(".final").remove();
+        $(".final").hide();
         $(".choice").css({ "display": "block" });
         $("#question").html(questions[quizPage].question);
         $("#a").html(questions[quizPage].choice.a);
