@@ -115,16 +115,32 @@ function playAgain() {
 
 function endGame() {
     if (questions.length -1  === quizPage) {
-        $(".score").remove();
         finalScore();      
     }  
 }
 
 function reStart() {
     var doOver = $("<button></button>").html("TRY AGAIN?");
-    doOver.addClass("again btn btn-large btn-block btn-primary");
+    doOver.addClass("restart btn btn-large btn-block btn-primary");
     $("#redo").append(doOver);
-
+    $(".restart").on("click",function () {
+        $(".restart").hide();
+        $(".final").remove();
+        wins = 0;
+        losses = 0;
+        quizPage = 0;
+        $(".choice").css({ "display": "block" });
+        $("#question").html(questions[quizPage].question);
+        $("#a").html(questions[quizPage].choice.a);
+        $("#b").html(questions[quizPage].choice.b);
+        $("#c").html(questions[quizPage].choice.c);
+        $("#d").html(questions[quizPage].choice.d);
+        $("#gif").show("<img src='assets/images/question.gif'/>");
+        $("#timer").show(time);
+        countDown();
+        start();
+        
+    })
 }
 
 function finalScore() {
@@ -132,25 +148,28 @@ function finalScore() {
     reStart();
     if (percent >= 80) {
         $(".final").html("Congrats! You scored a " + percent + "%!");
-        $(".final").append("<img src='assets/images/dollarsign.gif'/>")
+        $(".final").append("<img src='assets/images/dollarsign.gif'/>");
+        $(".final").show("<img src='assets/images/dollarsign.gif'/>");
     }else if (percent < 60) {
         $(".final").html("Time to study! You scored a " + percent + "%.");
-        $(".final").append("<img src='assets/images/study.gif'/>")
+        $(".final").append("<img src='assets/images/study.gif'/>");
+        $(".final").show("<img src='assets/images/study.gif'/>")
     }else{
         $(".final").html("Not bad! You scored a " + percent + "%.");
-        $(".final").append("<img src='assets/images/soso.gif'/>")
+        $(".final").append("<img src='assets/images/soso.gif'/>");
+        $(".final").show("<img src='assets/images/soso.gif'/>");
     }
     
 }
 
 
-
+//////////////////////////////////////////////////////////////
 
 
 
 $( document ).ready(function() {
     
-     $("#play").on("click",function() {
+     $("#play").on("click",function (play) {
          $("#play").remove();
          $("#gif").append("<img src='assets/images/question.gif'/>");
          start();
